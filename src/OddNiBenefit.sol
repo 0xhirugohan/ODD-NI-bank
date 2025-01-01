@@ -22,10 +22,10 @@ contract OddNiBenefit {
         require(OBE.getMemberStatus(msg.sender), "Not a member of OddNiBank");
         require(OBE.getDepositedAmount(msg.sender) >= MINIMUM_DEPOSIT, "Deposit below minimum requirement");
         require(OBE.reentrancyLock() == false, "The Bank is currently under lockdown!");
-        uint256 _toCalculate = OBE.getDepositedAmount(msg.sender);
+        uint256 _toCalculate = OBE.getDepositedAmount(msg.sender); // review: called storage variable twice
         uint256 toGift = _toCalculate * 2;
 
-        (bool sent, ) = msg.sender.call{value: toGift}("");
+        (bool sent, ) = msg.sender.call{value: toGift}(""); // review: no liquidity????
         require(sent, "Gift claim failed.");
     }
 

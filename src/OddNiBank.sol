@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
 
+import {console} from "forge-std/console.sol";
+
 contract OddNiBank{
     // The Contract will have some constants
     uint256 public constant BONUS_TO_PAY = 1 ether;
